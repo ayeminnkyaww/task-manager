@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+  </head>
+  <body class="bg-stone-200 pt-5">
+    <main class="max-w-[400px] min-h-[400px] bg-white mx-auto p-5">
+      <!-- control the whole to do list section -->
+      <div class="mb-5">
+        <h1 class="text-2xl font-semibold font-serif mb-3">Task Lists</h1>
+        <!-- user input and adding list section -->
+        <div class="flex mb-3">
+          <input
+            type="text"
+            id="userInput"
+            class="border border-stone-900 focus:outline-none px-3 py-2 flex-grow font-semibold text-lg border-r-0"
+          />
+          <button
+            type="button"
+            id="addBtn"
+            class="text-white bg-stone-900 border border-stone-900 hover:bg-stone-700 duration-200 active:bg-stone-900 px-3 py-2 rounded"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 4.5v15m7.5-7.5h-15"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- status section -->
+      <div class="flex justify-between mb-5">
+        <p class="font-semibold font-serif text-lg">Your List</p>
+        <p
+          class="border border-stone-900 bg-stone-900 text-white rounded-full px-3"
+        >
+          <span id="doneTask">0</span> /
+          <span id="totalTask">0</span>
+        </p>
+      </div>
+
+      <!-- Show tasks section -->
+      <div id="listGroup">
+        <!-- empty stage -->
+        <div class="last:block hidden">
+          <div class="flex flex-col items-center pt-10">
+            <img src="./img/empty.svg" class="size-32 mb-2" />
+            <p class="font-serif">There is no job.</p>
+          </div>
+          <template>
+            <div
+              class="list list-task flex items-center justify-between border bg-white border-stone-900 p-2 mb-3"
+            >
+              <div class="flex gap-2 items-center">
+                <input
+                  type="checkbox"
+                  class="size-4 accent-stone-900 done-check-list"
+                />
+                <p class="job"></p>
+              </div>
+
+              <!-- edit and delete section -->
+              <div class="flex gap-2">
+                <!-- penceil icon -->
+                <button
+                  class="border border-stone-900 p-2 hover:bg-stone-900 hover:text-white active:bg-stone-700 duration-200 editBtn"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4 pointer-events-none"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                    />
+                  </svg>
+                </button>
+
+                <!-- trash icon -->
+                <button
+                  class="border border-stone-900 p-2 hover:bg-stone-900 hover:text-white active:bg-stone-700 duration-200 trashBtn"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-4 pointer-events-none"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </main>
+
+    <section class="flex justify-center items-center gap-4 my-4">
+      <button
+        class="border border-stone-900 px-4 py-2 bg-stone-900 text-stone-50 flex items-center hover:bg-slate-800 duration-150 gap-2"
+        id="deleteAllBtn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z"
+          />
+        </svg>
+        Delete All
+      </button>
+      <button
+        class="border border-stone-900 px-4 py-2 hover:bg-stone-900 hover:text-stone-50 duration-150 flex items-center gap-2"
+        id="doneAllBtn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m4.5 12.75 6 6 9-13.5"
+          />
+        </svg>
+        Done All
+      </button>
+    </section>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
